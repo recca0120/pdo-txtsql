@@ -1,0 +1,1 @@
+a:2:{s:7:"primary";s:0:"";s:4:"test";a:7:{s:9:"permanent";i:0;s:14:"auto_increment";i:1;s:3:"max";i:10;s:4:"type";s:3:"int";s:7:"default";s:1:"1";s:9:"autocount";i:0;s:8:"enum_val";s:0:"";}}

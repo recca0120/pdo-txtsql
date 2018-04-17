@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+	<title>txtSQL Documentation</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<link rel="stylesheet" type="text/css" href="./includes/style.css" />
+	<script src="./includes/javascript.js"></script>
+</head>
+<body>
+
+<table width="96%" cellspacing="0" cellpadding="9" border="0" align="center" class="mainTable">
+	<tr>
+		<td class="header" colspan="2">
+			<table cellspacing="0" cellpadding="0" border="0" width="100%">
+				<tr>
+					<td align="left">
+						<a href="index.html">Home</a>
+						&nbsp; &nbsp;<a href="javascript:history.back()">Back</a>
+						&nbsp; &nbsp;<a href="javascript:history.forward()">Forward</a>
+						&nbsp; &nbsp;<a href="javascript:location.reload()">Refresh</a>
+						&nbsp; &nbsp;<a href="http://chibiguy.dotgeek.org/index.php">txtSQL Homepage</a>
+					</td>
+					<td align="right">
+						<a href="http://chibiguy.dotgeek.org/index.php" target="_blank"><img src="includes/txtsql_powered_small.gif" /></a>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td class="mainCell">
+			<div class="dashedUnderline"><a href="index.html">txtSQL Documentation</a> > <a  href="2.html">User Functions</a> > grant_permissions</div><br />
+
+			<table width="100%">
+				<tr valign="bottom">
+					<td align="left">
+						<div class="h1">grant_permissions <div style="font-size: 10px;">Purpose: To work with the current txtSQL users</div></div>
+					</td>
+					<td align="right">
+						txtSQL >= 2.0.0 Beta					</td>
+				</tr>
+			</table>
+
+			<div class="syntax">void grant_permissions ( $action, $username, $password [, $newpass] )</div><br />
+
+			<div class="content">
+				This function allows for the manipulation of <i>$user</i>; it can either add a user, drop, or edit a user.<br>
+<i>$action</i> can be one of either add, edit, or drop.<br /><br />
+
+<li>If it is 'add', then <i>$username</i> will be the new user's name, and <i>$password</i> will be his/her password<br>
+<li>If it is 'drop', then <i>$username</i> must be specified, and so does <i>$password</i> (password for this user).
+<li>If it is 'edit', then <i>$username</i> must be specified, along with <i>$password</i>, and <i>$newpass</i>. The new password would be
+<i>$newpass</i>.<br /><br />
+
+<b>Note</b>- If you are dropping, or editing a user, and the incorrect password is specified, OR when adding a user and the user already exists, then txtSQL will issue a warning and return <i>false</i>.<br />
+<b>Note</b>- You can never drop the user 'root'<br />
+<b>Note</b>- In txtSQL <= 2.2.0 Beta, setting an empty password would incorrectly save, do not set empty passwords before this.			</div><br /><br />
+
+			
+						<table width="100%" cellspacing="0" cellpadding="0">
+				<tr>
+					<td align="left">
+						<b>Example 3: grant_permissions() to add user</b>
+					</td>
+					<td align="right">
+						<a href="javascript: ClipBoard(copytext1)">Copy to clipboard</a>
+					</td>
+				</tr>
+			</table>
+			<table width="100%" cellspacing="0" cellpadding="3" class="examples">
+				<tr>
+					<td id="copytext1">
+						<code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#FF8000">// Add a user 'foo' with password 'bar' <br /></font><font color="#0000BB">$sql</font><font color="#007700">-&gt;</font><font color="#0000BB">grant_permissions</font><font color="#007700">(</font><font color="#DD0000">'add'</font><font color="#007700">, </font><font color="#DD0000">'foo'</font><font color="#007700">, </font><font color="#DD0000">'bar'</font><font color="#007700">)<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code>					</td>
+				</tr>
+			</table><br /><br />
+			<table width="100%" cellspacing="0" cellpadding="0">
+				<tr>
+					<td align="left">
+						<b>Example 4: grant_permissions() to drop user</b>
+					</td>
+					<td align="right">
+						<a href="javascript: ClipBoard(copytext2)">Copy to clipboard</a>
+					</td>
+				</tr>
+			</table>
+			<table width="100%" cellspacing="0" cellpadding="3" class="examples">
+				<tr>
+					<td id="copytext2">
+						<code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#FF8000">// Drop a user 'foo' whose password is 'bar' <br /></font><font color="#0000BB">$sql</font><font color="#007700">-&gt;</font><font color="#0000BB">grant_permissions</font><font color="#007700">(</font><font color="#DD0000">'drop'</font><font color="#007700">, </font><font color="#DD0000">'foo'</font><font color="#007700">, </font><font color="#DD0000">'bar'</font><font color="#007700">)<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code>					</td>
+				</tr>
+			</table><br /><br />
+			<table width="100%" cellspacing="0" cellpadding="0">
+				<tr>
+					<td align="left">
+						<b>Example 5: grant_permissions() to edit user</b>
+					</td>
+					<td align="right">
+						<a href="javascript: ClipBoard(copytext3)">Copy to clipboard</a>
+					</td>
+				</tr>
+			</table>
+			<table width="100%" cellspacing="0" cellpadding="3" class="examples">
+				<tr>
+					<td id="copytext3">
+						<code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#FF8000">// Edit a user 'foo' whose password is 'bar', and change the password to 'foobar' <br /></font><font color="#0000BB">$sql</font><font color="#007700">-&gt;</font><font color="#0000BB">grant_permissions</font><font color="#007700">(</font><font color="#DD0000">'edit'</font><font color="#007700">, </font><font color="#DD0000">'foo'</font><font color="#007700">, </font><font color="#DD0000">'bar'</font><font color="#007700">, </font><font color="#DD0000">'foobar'</font><font color="#007700">)<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code>					</td>
+				</tr>
+			</table><br /><br />
+
+			<TEXTAREA ID="holdtext" STYLE="display: none;"></TEXTAREA>			
+			<table class="commentTable">
+				<tr>
+					<td style="border: 0px solid; margin: 0px; padding: 0px;">
+						<table width="100%">
+							<tr>
+								<td style="border:0px solid;">
+									<div class="h1">User Comments - grant_permissions</div>
+								</td>
+								<td align="right" style="border: 0px solid; padding: 0px; margin: 0px;">
+									
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td class="row1">
+						<div class="commentInfo">
+						<b>FarazAli</b> &lt;Faraz87 at comcast dot net&gt;<br />
+						<div class="small">July 30, 2004, 11:19 pm</div>
+						</div>
+						
+						<code>Passwords are automatically encrypted by txtSQL using the md5() hashing method, so there is no need to encrypt the password before hand.
+</code>
+					</td>
+				</tr>
+			</table>
+		</td>
+
+		<td class="sideCell">
+		
+			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="dashedUnderline">
+				<tr>
+					<td align="left">
+						<a  href="15.html">Last Page</a>					</td>
+					<td align="right">
+						<a  href="17.html">Next Page</a>					</td>
+				</tr>
+			</table><br />
+
+			
+			<a style="font-weight: bold;"  href="1.html">'Language Reference'</a></b><br />
+			<br />
+
+			<a style="font-weight: bold;"  href="13.html">User Functions</a></b><br />
+			<li /> <a  href="14.html">connect</a><br />
+			<li /> <a  href="15.html">disconnect</a><br />
+			<li /> <i>grant_permissions</i><br />
+			<li /> <a  href="17.html">getUsers</a><br />
+			<li /> <a  href="18.html">version</a><br />
+			<li /> <a  href="50.html">query_count</a><br />
+			<br />
+
+			<a style="font-weight: bold;"  href="19.html">Database Functions</a></b><br />
+			<br />
+
+			<a style="font-weight: bold;"  href="28.html">Data Manipulation Functions</a></b><br />
+			<br />
+
+			<a style="font-weight: bold;"  href="34.html">Table Functions</a></b><br />
+			<br />
+
+			<a style="font-weight: bold;"  href="42.html">Error Handling Functions</a></b><br />
+			<br />
+
+			<a style="font-weight: bold;"  href="52.html">SQL Syntax</a></b><br />
+			<br />
+
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" class="notices" align="center">
+			[ txtSQL Documentation powered by <a href="http://chibiguy.dotgeek.org" target="_blank">txtSQL</a> | 6 SQL Queries ]
+		</td>
+	</tr>
+</table>
+
+</body>
+</html>

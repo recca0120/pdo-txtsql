@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+	<title>txtSQL Documentation</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<link rel="stylesheet" type="text/css" href="./includes/style.css" />
+	<script src="./includes/javascript.js"></script>
+</head>
+<body>
+
+<table width="96%" cellspacing="0" cellpadding="9" border="0" align="center" class="mainTable">
+	<tr>
+		<td class="header" colspan="2">
+			<table cellspacing="0" cellpadding="0" border="0" width="100%">
+				<tr>
+					<td align="left">
+						<a href="index.html">Home</a>
+						&nbsp; &nbsp;<a href="javascript:history.back()">Back</a>
+						&nbsp; &nbsp;<a href="javascript:history.forward()">Forward</a>
+						&nbsp; &nbsp;<a href="javascript:location.reload()">Refresh</a>
+						&nbsp; &nbsp;<a href="http://chibiguy.dotgeek.org/index.php">txtSQL Homepage</a>
+					</td>
+					<td align="right">
+						<a href="http://chibiguy.dotgeek.org/index.php" target="_blank"><img src="includes/txtsql_powered_small.gif" /></a>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td class="mainCell">
+			<div class="dashedUnderline"><a href="index.html">txtSQL Documentation</a> > <a  href="4.html">Data Manipulation Functions</a> > delete</div><br />
+
+			<table width="100%">
+				<tr valign="bottom">
+					<td align="left">
+						<div class="h1">delete <div style="font-size: 10px;">Purpose: To delete rows from a txtSQL table</div></div>
+					</td>
+					<td align="right">
+						txtSQL >= 2.2.2 RC2					</td>
+				</tr>
+			</table>
+
+			<div class="syntax">int delete ( array( 'table' => $table, $where => $where, [, 'limit' => $limit [, 'db' => $db]] ) )</div><br />
+
+			<div class="content">
+				This function will delete any rows that fit the <i>$where</i> clause, and returns the number of rows deleted from the table.
+This function will only delete rows as long as they are within the <i>$limit</i>. If no <i>$limit</i> is defined, then all rows that match will be deleted.<br /><br />
+
+<b>Important</b>- To achieve the same results as this function before txtSQL 2.2.2 RC2, use the <i><a  href="33.html">execute()</a></i> function<br />
+<b>Note</b>- For more information on defining a where clause, see the <i><a  href="8.html">how to create a where clause</a></i> section, or for defining a limit clause, see <i>
+<a  href="10.html">how to create a limit clause</i></a> section<br />
+<b>Note</b>- If no <i>$db</i> is specified and no database is already selected, txtSQL will issue an error			</div><br /><br />
+
+			
+						<table width="100%" cellspacing="0" cellpadding="0">
+				<tr>
+					<td align="left">
+						<b>Example 18: delete()</b>
+					</td>
+					<td align="right">
+						<a href="javascript: ClipBoard(copytext1)">Copy to clipboard</a>
+					</td>
+				</tr>
+			</table>
+			<table width="100%" cellspacing="0" cellpadding="3" class="examples">
+				<tr>
+					<td id="copytext1">
+						<code><font color="#000000">
+<font color="#0000BB">&lt;?php <br />$deleted </font><font color="#007700">= <br /></font><font color="#0000BB">$sql</font><font color="#007700">-&gt;</font><font color="#0000BB">delete</font><font color="#007700">(array(</font><font color="#DD0000">'db'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">=&gt; </font><font color="#DD0000">'testDB'</font><font color="#007700">, <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'table'&nbsp;&nbsp;</font><font color="#007700">=&gt; </font><font color="#DD0000">'testTable'</font><font color="#007700">, <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'where'&nbsp;&nbsp;</font><font color="#007700">=&gt; array(</font><font color="#DD0000">'id &lt;= 294'</font><font color="#007700">), <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'limit'&nbsp;&nbsp;</font><font color="#007700">=&gt; array(</font><font color="#0000BB">10</font><font color="#007700">, </font><font color="#0000BB">19</font><font color="#007700">))); <br /><br />echo </font><font color="#DD0000">'txtSQL deleted '</font><font color="#007700">.</font><font color="#0000BB">$deleted</font><font color="#007700">.</font><font color="#DD0000">' number of row(s)'</font><font color="#007700">; <br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code>					</td>
+				</tr>
+			</table><br /><br />
+
+			<TEXTAREA ID="holdtext" STYLE="display: none;"></TEXTAREA>			
+			<table class="commentTable">
+				<tr>
+					<td style="border: 0px solid; margin: 0px; padding: 0px;">
+						<table width="100%">
+							<tr>
+								<td style="border:0px solid;">
+									<div class="h1">User Comments - delete</div>
+								</td>
+								<td align="right" style="border: 0px solid; padding: 0px; margin: 0px;">
+									
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td class="row1">
+						<div class="commentInfo">
+						<b>Faraz Ali</b> &lt;SaiyanM at hotmail dot com&gt;<br />
+						<div class="small">July 30, 2004, 11:19 pm</div>
+						</div>
+						
+						<code>If you don't specify a 'where' clause in the query, then all rows will be deleted.<br />
+&lt;?php<br />
+$sql-&gt;delete(array('db'    =&gt; 'testDB',<br />
+                   'table' =&gt; 'testTable')); // all rows will be deleted<br />
+?&gt;
+</code>
+					</td>
+				</tr>
+			</table>
+		</td>
+
+		<td class="sideCell">
+		
+			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="dashedUnderline">
+				<tr>
+					<td align="left">
+						<a  href="31.html">Last Page</a>					</td>
+					<td align="right">
+						<a  href="33.html">Next Page</a>					</td>
+				</tr>
+			</table><br />
+
+			
+			<a style="font-weight: bold;"  href="1.html">'Language Reference'</a></b><br />
+			<br />
+
+			<a style="font-weight: bold;"  href="13.html">User Functions</a></b><br />
+			<br />
+
+			<a style="font-weight: bold;"  href="19.html">Database Functions</a></b><br />
+			<br />
+
+			<a style="font-weight: bold;"  href="28.html">Data Manipulation Functions</a></b><br />
+			<li /> <a  href="29.html">select</a><br />
+			<li /> <a  href="30.html">insert</a><br />
+			<li /> <a  href="31.html">update</a><br />
+			<li /> <i>delete</i><br />
+			<li /> <a  href="33.html">execute</a><br />
+			<br />
+
+			<a style="font-weight: bold;"  href="34.html">Table Functions</a></b><br />
+			<br />
+
+			<a style="font-weight: bold;"  href="42.html">Error Handling Functions</a></b><br />
+			<br />
+
+			<a style="font-weight: bold;"  href="52.html">SQL Syntax</a></b><br />
+			<br />
+
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" class="notices" align="center">
+			[ txtSQL Documentation powered by <a href="http://chibiguy.dotgeek.org" target="_blank">txtSQL</a> | 6 SQL Queries ]
+		</td>
+	</tr>
+</table>
+
+</body>
+</html>

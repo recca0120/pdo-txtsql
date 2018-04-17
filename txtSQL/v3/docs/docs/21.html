@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+	<title>txtSQL Documentation</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<link rel="stylesheet" type="text/css" href="./includes/style.css" />
+	<script src="./includes/javascript.js"></script>
+</head>
+<body>
+
+<table width="96%" cellspacing="0" cellpadding="9" border="0" align="center" class="mainTable">
+	<tr>
+		<td class="header" colspan="2">
+			<table cellspacing="0" cellpadding="0" border="0" width="100%">
+				<tr>
+					<td align="left">
+						<a href="index.html">Home</a>
+						&nbsp; &nbsp;<a href="javascript:history.back()">Back</a>
+						&nbsp; &nbsp;<a href="javascript:history.forward()">Forward</a>
+						&nbsp; &nbsp;<a href="javascript:location.reload()">Refresh</a>
+						&nbsp; &nbsp;<a href="http://chibiguy.dotgeek.org/index.php">txtSQL Homepage</a>
+					</td>
+					<td align="right">
+						<a href="http://chibiguy.dotgeek.org/index.php" target="_blank"><img src="includes/txtsql_powered_small.gif" /></a>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td class="mainCell">
+			<div class="dashedUnderline"><a href="index.html">txtSQL Documentation</a> > <a  href="3.html">Database Functions</a> > createdb</div><br />
+
+			<table width="100%">
+				<tr valign="bottom">
+					<td align="left">
+						<div class="h1">createdb <div style="font-size: 10px;">Purpose: To create a new txtSQL database inside the current working directory</div></div>
+					</td>
+					<td align="right">
+						txtSQL >= 2.0.0 Beta					</td>
+				</tr>
+			</table>
+
+			<div class="syntax">void createdb ( array( 'db' => $db ) )</div><br />
+
+			<div class="content">
+				This function will create a new database inside of the current working directory, as long as it does not already exists.
+<br /><br />
+<b>Note</b>- This function will return <i>false</i> if the database already exists<br>
+<b>Caveat</b>- In windows, filenames are not case-sensative, so 'DBNAME' is the same as 'dbname', which is why it will issue an error if you try to create a database 'test', when 'TEST' exists.			</div><br /><br />
+
+			
+						<table width="100%" cellspacing="0" cellpadding="0">
+				<tr>
+					<td align="left">
+						<b>Example 8: createdb()</b>
+					</td>
+					<td align="right">
+						<a href="javascript: ClipBoard(copytext1)">Copy to clipboard</a>
+					</td>
+				</tr>
+			</table>
+			<table width="100%" cellspacing="0" cellpadding="3" class="examples">
+				<tr>
+					<td id="copytext1">
+						<code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#FF8000">// txtSQL created a new database named testDatabase <br /></font><font color="#0000BB">$sql</font><font color="#007700">-&gt;</font><font color="#0000BB">createdb</font><font color="#007700">(array(</font><font color="#DD0000">'db' </font><font color="#007700">=&gt; </font><font color="#DD0000">'testDatabase'</font><font color="#007700">)) or die(</font><font color="#DD0000">'Error creating txtSQL DB, txtSQL said: '</font><font color="#007700">.</font><font color="#0000BB">$sql</font><font color="#007700">-&gt;</font><font color="#0000BB">get_last_error</font><font color="#007700">());<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code>					</td>
+				</tr>
+			</table><br /><br />
+
+			<TEXTAREA ID="holdtext" STYLE="display: none;"></TEXTAREA>			
+			<table class="commentTable">
+				<tr>
+					<td style="border: 0px solid; margin: 0px; padding: 0px;">
+						<table width="100%">
+							<tr>
+								<td style="border:0px solid;">
+									<div class="h1">User Comments - createdb</div>
+								</td>
+								<td align="right" style="border: 0px solid; padding: 0px; margin: 0px;">
+									
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td class="row1">
+						<div class="commentInfo">
+						<b>Izzet</b> &lt;pembeci at spamsucks dot cs dot jhu dot edu&gt;<br />
+						<div class="small">February 28, 2005, 7:12 pm</div>
+						</div>
+						
+						<code>Of course, this is only an issue if you are not the root like me.
+</code>
+					</td>
+				</tr>
+				<tr>
+					<td class="row1">
+						<div class="commentInfo">
+						<b>Izzet</b> &lt;pembeci at cs dot jhu dot edu&gt;<br />
+						<div class="small">February 28, 2005, 7:12 pm</div>
+						</div>
+						
+						<code>Databases are created with a 755 permission. In order to create tables (files) in them from a web page you have to change the permission to 777. For some servers if you create them via web the owner will be nobody and you will not be able to change permissions. So create them by running the script from command line first, the owner will be you and then you can set the 777 permission.<br />
+<br />
+At least this was the story for me.
+</code>
+					</td>
+				</tr>
+			</table>
+		</td>
+
+		<td class="sideCell">
+		
+			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="dashedUnderline">
+				<tr>
+					<td align="left">
+						<a  href="20.html">Last Page</a>					</td>
+					<td align="right">
+						<a  href="22.html">Next Page</a>					</td>
+				</tr>
+			</table><br />
+
+			
+			<a style="font-weight: bold;"  href="1.html">'Language Reference'</a></b><br />
+			<br />
+
+			<a style="font-weight: bold;"  href="13.html">User Functions</a></b><br />
+			<br />
+
+			<a style="font-weight: bold;"  href="19.html">Database Functions</a></b><br />
+			<li /> <a  href="20.html">showdbs</a><br />
+			<li /> <i>createdb</i><br />
+			<li /> <a  href="22.html">dropdb</a><br />
+			<li /> <a  href="23.html">renamedb</a><br />
+			<li /> <a  href="24.html">isLocked</a><br />
+			<li /> <a  href="25.html">lockdb</a><br />
+			<li /> <a  href="26.html">unlockdb</a><br />
+			<li /> <a  href="27.html">selectdb</a><br />
+			<li /> <a  href="48.html">db_exists</a><br />
+			<br />
+
+			<a style="font-weight: bold;"  href="28.html">Data Manipulation Functions</a></b><br />
+			<br />
+
+			<a style="font-weight: bold;"  href="34.html">Table Functions</a></b><br />
+			<br />
+
+			<a style="font-weight: bold;"  href="42.html">Error Handling Functions</a></b><br />
+			<br />
+
+			<a style="font-weight: bold;"  href="52.html">SQL Syntax</a></b><br />
+			<br />
+
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" class="notices" align="center">
+			[ txtSQL Documentation powered by <a href="http://chibiguy.dotgeek.org" target="_blank">txtSQL</a> | 6 SQL Queries ]
+		</td>
+	</tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+	<title>txtSQL Documentation</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<link rel="stylesheet" type="text/css" href="./includes/style.css" />
+	<script src="./includes/javascript.js"></script>
+</head>
+<body>
+
+<table width="96%" cellspacing="0" cellpadding="9" border="0" align="center" class="mainTable">
+	<tr>
+		<td class="header" colspan="2">
+			<table cellspacing="0" cellpadding="0" border="0" width="100%">
+				<tr>
+					<td align="left">
+						<a href="index.html">Home</a>
+						&nbsp; &nbsp;<a href="javascript:history.back()">Back</a>
+						&nbsp; &nbsp;<a href="javascript:history.forward()">Forward</a>
+						&nbsp; &nbsp;<a href="javascript:location.reload()">Refresh</a>
+						&nbsp; &nbsp;<a href="http://chibiguy.dotgeek.org/index.php">txtSQL Homepage</a>
+					</td>
+					<td align="right">
+						<a href="http://chibiguy.dotgeek.org/index.php" target="_blank"><img src="includes/txtsql_powered_small.gif" /></a>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td class="mainCell">
+			<div class="dashedUnderline"><a href="index.html">txtSQL Documentation</a> > <a  href="1.html">'Language Reference'</a> > Primary Keys</div><br />
+
+			<table width="100%">
+				<tr valign="bottom">
+					<td align="left">
+						<div class="h1">Primary Keys </div>
+					</td>
+					<td align="right">
+											</td>
+				</tr>
+			</table>
+
+			<br />			<div class="content">
+				txtSQL has been designed to allow the use of primary keys. There are two ways to add them, and only one
+way to drop them.<br /><br />
+
+To add primary keys when creating a table, specify the <a  href="5.html">column type</a> 'primary' and set it
+equal to 1. The column must be 'int' (integer) and 'auto_increment'.<br />
+The other way to add a primary key is to use the <a  href="38.html">altertable()</a> function.<br /><br />
+
+If you want to drop a primary key, you must also use the <a  href="38#dropkey.html">altertable()</a> function.<br /><br />			</div><br /><br />
+
+			
+			
+			<TEXTAREA ID="holdtext" STYLE="display: none;"></TEXTAREA>			
+			<table class="commentTable">
+				<tr>
+					<td style="border: 0px solid; margin: 0px; padding: 0px;">
+						<table width="100%">
+							<tr>
+								<td style="border:0px solid;">
+									<div class="h1">User Comments - Primary Keys</div>
+								</td>
+								<td align="right" style="border: 0px solid; padding: 0px; margin: 0px;">
+									
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td class="row1">
+						<div class="commentInfo">
+						<b>Faraz Ali</b> &lt;SaiyanM at hotmail dot com&gt;<br />
+						<div class="small">July 30, 2004, 11:19 pm</div>
+						</div>
+						
+						<code>If you want to use primary keys in a where clause, set the column name as 'primary', it's a special column setup for you to use.<br />
+<br />
+&lt;?php<br />
+$sql-&gt;select(array('table' =&gt; 'table',<br />
+                   'where' =&gt; array('primary = 2')));<br />
+?&gt;
+</code>
+					</td>
+				</tr>
+			</table>
+		</td>
+
+		<td class="sideCell">
+		
+			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="dashedUnderline">
+				<tr>
+					<td align="left">
+						<a  href="5.html">Last Page</a>					</td>
+					<td align="right">
+						<a  href="7.html">Next Page</a>					</td>
+				</tr>
+			</table><br />
+
+			
+			<a style="font-weight: bold;"  href="1.html">'Language Reference'</a></b><br />
+			<li /> <a  href="2.html">Logical Operators</a><br />
+			<li /> <a  href="3.html">Relational Operators</a><br />
+			<li /> <a  href="4.html">Data Types</a><br />
+			<li /> <a  href="5.html">Column Types</a><br />
+			<li /> <i>Primary Keys</i><br />
+			<li /> <a  href="7.html">Functions</a><br />
+			<li /> <a  href="8.html">Where Clauses</a><br />
+			<li /> <a  href="9.html">LIKE Clauses</a><br />
+			<li /> <a  href="10.html">Limit Clauses</a><br />
+			<li /> <a  href="11.html">OrderBy Clauses</a><br />
+			<li /> <a  href="12.html">Notes</a><br />
+			<li /> <a  href="75.html">txtSQL 3.0.0 Beta Readme</a><br />
+			<br />
+
+			<a style="font-weight: bold;"  href="13.html">User Functions</a></b><br />
+			<br />
+
+			<a style="font-weight: bold;"  href="19.html">Database Functions</a></b><br />
+			<br />
+
+			<a style="font-weight: bold;"  href="28.html">Data Manipulation Functions</a></b><br />
+			<br />
+
+			<a style="font-weight: bold;"  href="34.html">Table Functions</a></b><br />
+			<br />
+
+			<a style="font-weight: bold;"  href="42.html">Error Handling Functions</a></b><br />
+			<br />
+
+			<a style="font-weight: bold;"  href="52.html">SQL Syntax</a></b><br />
+			<br />
+
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" class="notices" align="center">
+			[ txtSQL Documentation powered by <a href="http://chibiguy.dotgeek.org" target="_blank">txtSQL</a> | 6 SQL Queries ]
+		</td>
+	</tr>
+</table>
+
+</body>
+</html>

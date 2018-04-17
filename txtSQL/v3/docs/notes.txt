@@ -1,0 +1,29 @@
+txtSQL Notes
+===================================================================================================
+- The examples included in the 'examples' folder are in no way complete. There are numerous security
+  holes (such as SQL-injection) which have not been fixed purpously because these scripts are merely
+  examples of what txtSQL is capable of.
+
+- txtSQLAdmin is no longer under 'examples', in-fact it is no longer part of the txtSQL package.
+  You may download txtSQLAdmin as a seperate download through the txtSQL website, however.
+
+- Many functions have been renamed for compliance in consistancy of naming conventions
+
+	OLD			   NEW
+	============================================
+	lockdb                  -> lockDb
+	unlockdb                -> unLockDb
+	selectDb                -> selectDb
+	errordump               -> errorDump
+	grant_permissions       -> grantPermissions
+	table_exists            -> tableExists
+	db_exists               -> dbExists
+	table_count             -> tableCount
+	last_insert_id          -> lastInsertId
+	query_count             -> queryCount
+	last_error              -> lastError
+	get_last_error          -> getLastError
+
+  For backwards compatibility, the old functions do exist.
+
+- get support at http://txtsql.sourceforge.net

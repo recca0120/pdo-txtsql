@@ -1,0 +1,322 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+	<title>txtSQL Documentation</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<link rel="stylesheet" type="text/css" href="./includes/style.css" />
+	<script src="./includes/javascript.js"></script>
+</head>
+<body>
+
+<table width="96%" cellspacing="0" cellpadding="9" border="0" align="center" class="mainTable">
+	<tr>
+		<td class="header" colspan="2">
+			<table cellspacing="0" cellpadding="0" border="0" width="100%">
+				<tr>
+					<td align="left">
+						<a href="index.html">Home</a>
+						&nbsp; &nbsp;<a href="javascript:history.back()">Back</a>
+						&nbsp; &nbsp;<a href="javascript:history.forward()">Forward</a>
+						&nbsp; &nbsp;<a href="javascript:location.reload()">Refresh</a>
+						&nbsp; &nbsp;<a href="http://chibiguy.dotgeek.org/index.php">txtSQL Homepage</a>
+					</td>
+					<td align="right">
+						<a href="http://chibiguy.dotgeek.org/index.php" target="_blank"><img src="includes/txtsql_powered_small.gif" /></a>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td class="mainCell">
+			<div class="dashedUnderline"><a href="index.html">txtSQL Documentation</a> > <a  href="1.html">'Language Reference'</a> > txtSQL 3.0.0 Beta Readme</div><br />
+
+			<table width="100%">
+				<tr valign="bottom">
+					<td align="left">
+						<div class="h1">txtSQL 3.0.0 Beta Readme </div>
+					</td>
+					<td align="right">
+											</td>
+				</tr>
+			</table>
+
+			<br />			<div class="content">
+				Welcome to the txtSQL 3.0.0 Beta readme. This page should be able to give you enough
+of a heads-up to start working with txtSQL. If you still find yourself confused after
+reading this page, try posting at <a href="http://chibiguy.dotgeek.org">the forums</a><br /><br />
+
+<div style="padding-left: 20px;">
+	<div class="h4" style="border-bottom: 1px dashed #D3D3D3;">1. Extracting txtSQL</div>
+	When you open the txtSQL package up, you will notice that there are three files; txtSQL.class.php,
+	txtSQL.core.php and txtSQL.parser.php. Extract all three files to the same directory. Create a folder
+	with an	arbitrary name; usually by convention, it is named 'data'. This will be the folder containing
+	the databases. It can be located anywhere on the server, but usually it is located in the same folder
+	as where you extracted the two files. Make sure this directory is CHMOD'ed to 0755 or higher.<br /><br />
+
+	Now go back to the .zip archive and search for the file 'txtsql.MYI', and extract it to the data
+	directory you just created.<br /><br />
+
+	OR<br /><br />
+
+	You can just copy the 'data' folder inside the .zip archive to your local harddrive.<br /><br />
+
+	<div class="h4" style="border-bottom: 1px dashed #D3D3D3;">2.Configuring the class file</div>
+	<!------------------------------------------------------------------------------------------>
+	Step one in using txtSQL, is to configure the class file so that it may be included into the php files
+	that may require it. You must define a constant which will tell txtSQL where the rest of the scripts are.<br /><br />
+
+		<div class="code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;?php<br />
+		&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; define('<b>TXTSQL_CORE_PATH</b>', 'PATH/TO/FOLDER/WITH/txtSQL_CORE_FILE');<br />
+		&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; define('<b>TXTSQL_PARSER_PATH</b>', 'PATH/TO/FOLDER/WITH/txtSQL_PARSER_FILE');<br />
+
+		&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; include_once('./txtSQL.class.php');<br />
+		&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ?&gt;</div><br /><br />
+
+	This way, if the three scripts reside in different folders, txtSQL will successfully be able to locate it with
+	these constants.<br /><br />
+
+	<div style="padding-left: 20px;">
+		<div class="h4" style="border-bottom: 1px dashed #D3D3D3;">2.1 Directory Structure</div>
+		<!------------------------------------------------------------------------------------------>
+		A valid data directory structure consists of the following format:<br /><br />
+
+		+ datafolder ( folder with all the databases in them )<br />
+		&nbsp; + database_name<br />
+		&nbsp; &nbsp; + table.FRM (column definitions)<br />
+		&nbsp; &nbsp; + table.MYD (row data)<br />
+		&nbsp; + txtsql<br />
+		&nbsp; &nbsp; + txtsql.MYI (included with package)<br /><br />
+
+		Basically, a database is a folder inside of the main datafolder.<br /><br />
+
+		Also inside the datafolder is the txtsql database, with the txtsql.MYI that comes with the package.<br /><br /.
+
+		Inside every database, a table is made up of two files; table.FRM, and table.MYD. The .FRM is the column
+		definitions, and the other is the rows of data.
+	</div>
+</div>
+
+<div class="h4" style="border-bottom: 1px dashed #D3D3D3;">3. Including the class file</div>
+<!------------------------------------------------------------------------------------------>
+Now that we are done configuring txtSQL 3.0.0, we can start working with it. First create a blank php document using
+your favorite text editor. As I said before, I am currently using TextPad. Save it as 'example.php'.<br /><br />
+
+To make things less complicated, make sure that you save it in the same directory as where the txtSQL scripts are in.<br /><br /.
+
+Now we must include the php class, so type this in the newly created document<br />
+
+<div class="code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;?php<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; include('./txtSQL.class.php');<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ?&gt;</div><br /><br />
+
+<div style="padding-left: 20px;">
+	<div class="h4" style="border-bottom: 1px dashed #D3D3D3;">3.1 Instantiating the txtSQL object</div>
+	<!------------------------------------------------------------------------------------------>
+	In the world of object oriented programming (OOP for short), when classes are instantiated, or a copy
+	of the class is created, a special type of variable called an object is automatically created.
+
+	The object is a pointer to many more variables or objects that are grouped in a special way. For more
+	information on object oriented programming in php, see <a href="http://www.php.net/manual/en/language.oop.php" target="_blank">http://www.php.net/manual/en/language.oop.php</a><br /><br />
+
+	We need to create an object that points to the txtSQL class and it's variables, so add this to the document<br /><br />
+
+	<div class="code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;?php<br />
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; include('./txtSQL.class.php');<br />
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color="red">$sql = new txtSQL('./data');</font><br />
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ?&gt;</div><br /><br />
+
+	The argument, the text enclosed in the single quotes, is the path to the data directory containing all of the
+	databases.<br /><br />
+
+	This folder must contain a folder called 'txtsql' (case-sensative), and inside that folder should be a file
+	called 'txtsql.MYI'. This file contains all of the user/password combinations needed to operate with txtSQL.<br /><br />
+
+	This folder & file come packaged with txtSQL. Once the path is correct, you may move on to the next section.<br /><br />
+
+	<div class="h4" style="border-bottom: 1px dashed #D3D3D3;">3.2 Connecting to txtSQL</div>
+	<!------------------------------------------------------------------------------------------>
+	We must now connect to txtSQL, with a correct username and password combination that will allow us to use txtSQL.<br /><br />
+
+	The default username for txtSQL is 'root', and the default password for it is blank (It is recomendded that you change
+	the password later on). Now, add the following to the text file<br /><br />
+
+	<div class="code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;?php<br />
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; include('./txtSQL.class.php');<br />
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; $sql = new txtSQL('./data');<br />
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color="red">$sql->connect($username, $password); // default is $sql->connect('root', '');</font><br />
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ?&gt;</div><br /><br />
+
+	txtSQL officially recognizes you as one of its users, and will allow you to query databases and table.<br /><br />
+
+	Refer to the documentation for a list of commands you may use<br /><br />
+
+	<div class="h4" style="border-bottom: 1px dashed #D3D3D3;">3.3 Selecting a database</div>
+	<!------------------------------------------------------------------------------------------>
+	Just like mySQL, before doing anything with a table, you must first tell txtSQL which database
+	the table is located in. This step is not crucial, because you can define a database in most queries
+	alone.<br /><br />
+
+	We tell txtSQL what database we are working with by using the following:<br /><br />
+
+	<div class="code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;?php<br />
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; include('./txtSQL.class.php');<br />
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; $sql = new txtSQL('./data');<br />
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; $sql->connect($username, $password); // default is $sql->connect('root', '');<br />
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color="red">$sql->selectdb('test');</font> // database 'test' is now selected<br />
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ?&gt;</div><br /><br />
+</div>
+
+<div class="h4" style="border-bottom: 1px dashed #D3D3D3;">4. Executing Commands</div>
+<!------------------------------------------------------------------------------------------>
+In order to make use of txtSQL, you have to call the query function through the $sql object we
+created earlier.<br /><br />
+
+An example of 'selecting' data:<br /><br />
+
+<div class="code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;?php<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; include('./txtSQL.class.php');<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; $sql = new txtSQL('./data');<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; $sql->connect($username, $password); // default is $sql->connect('root', '');<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; $sql->selectdb('test'); // database 'test' is now selected<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color="red">$query &nbsp;= 'SELECT * FROM test.test WHERE id = 10 AND name =~ "John Smith" LIMIT 0, 100';</font><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color="red">$results = $sql->query($query);</font><br />
+</div><br />
+
+For more information on the SQL Syntax, see the <a href="52.html">SQL Syntax</a> section<br /><br />
+
+<div style="padding-left: 20px;">
+	<div class="h4" style="border-bottom: 1px dashed #D3D3D3;">4.1 Working with the results</div>
+	<!------------------------------------------------------------------------------------------>
+	The $results variable now contains all of the rows of information inside the table 'test'. Table
+	'test' was defined as inside database 'test'.<br /><br />
+
+	The only rows returned are the ones which fit the credentials that you give it ( The where clause ).
+	You can use a foreach loop in this case to loop through the results<br /><br />
+
+	<div class="code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;?php<br />
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; include('./txtSQL.class.php');<br />
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; $sql = new txtSQL('./data');<br />
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; $sql->connect($username, $password); // default is $sql->connect('root', '');<br />
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; $sql->selectdb('test'); // database 'test' is now selected<br /><br />
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; $query &nbsp;= 'SELECT * FROM test.test WHERE id = 10 AND name =~ "John Smith" LIMIT 0, 100';<br />
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; $results = $sql->query($query);<br />
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color="red">foreach ( $results as $key => $row )<br />
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {<br />
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; print "ID: $row[id], NAME: $row[name]&lt;BR /&gt;n";<br />
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br /></font>
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ?&gt;</div>
+</div><br />
+
+<div class="h4" style="border-bottom: 1px dashed #D3D3D3;">5. Disconnecting from txtSQL</div>
+<!------------------------------------------------------------------------------------------>
+At the end of every script should appear the following line to disconnect from txtSQL. It
+doesn't stop the script from working if it doesn't appear, it's merely present for development
+purposes.<br /><br />
+
+<div class="code">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;?php<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; include('./txtSQL.class.php');<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; $sql = new txtSQL('./data');<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; $sql->connect($username, $password); // default is $sql->connect('root', '');<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; $sql->selectdb('test'); // database 'test' is now selected<br /><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; $query &nbsp;= 'SELECT * FROM test.test WHERE id = 10 AND name =~ "John Smith" LIMIT 0, 100';<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; $results = $sql->query($query);<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; foreach ( $results as $key => $row )<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; print "ID: $row[id], NAME: $row[name]&lt;BR /&gt;n";<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br /><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color="red">$sql->disconnect();</font><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ?&gt;</div><br />
+
+<div class="h4" style="border-bottom: 1px dashed #D3D3D3;">6. Error Handling</div>
+<!------------------------------------------------------------------------------------------>
+txtSQL comes pre-built with error handling capabilities. They are listed below, click a function
+for example usage and syntax<br /><br />
+
+<li /> <a href="43.html">strict()</a>
+<li /> <a href="44.html">get_last_error()</a>
+<li /> <a href="45.html">last_error()</a>
+<li /> <a href="46.html">errordump()</a>			</div><br /><br />
+
+			
+			
+			<TEXTAREA ID="holdtext" STYLE="display: none;"></TEXTAREA>			
+			<table class="commentTable">
+				<tr>
+					<td style="border: 0px solid; margin: 0px; padding: 0px;">
+						<table width="100%">
+							<tr>
+								<td style="border:0px solid;">
+									<div class="h1">User Comments - txtSQL 3.0.0 Beta Readme</div>
+								</td>
+								<td align="right" style="border: 0px solid; padding: 0px; margin: 0px;">
+									
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td class="row1" align="center">
+						No comments posted yet; 
+					</td>
+				</tr>
+			</table>
+		</td>
+
+		<td class="sideCell">
+		
+			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="dashedUnderline">
+				<tr>
+					<td align="left">
+						<a  href="12.html">Last Page</a>					</td>
+					<td align="right">
+						<a  href="13.html">Next Page</a>					</td>
+				</tr>
+			</table><br />
+
+			
+			<a style="font-weight: bold;"  href="1.html">'Language Reference'</a></b><br />
+			<li /> <a  href="2.html">Logical Operators</a><br />
+			<li /> <a  href="3.html">Relational Operators</a><br />
+			<li /> <a  href="4.html">Data Types</a><br />
+			<li /> <a  href="5.html">Column Types</a><br />
+			<li /> <a  href="6.html">Primary Keys</a><br />
+			<li /> <a  href="7.html">Functions</a><br />
+			<li /> <a  href="8.html">Where Clauses</a><br />
+			<li /> <a  href="9.html">LIKE Clauses</a><br />
+			<li /> <a  href="10.html">Limit Clauses</a><br />
+			<li /> <a  href="11.html">OrderBy Clauses</a><br />
+			<li /> <a  href="12.html">Notes</a><br />
+			<li /> <i>txtSQL 3.0.0 Beta Readme</i><br />
+			<br />
+
+			<a style="font-weight: bold;"  href="13.html">User Functions</a></b><br />
+			<br />
+
+			<a style="font-weight: bold;"  href="19.html">Database Functions</a></b><br />
+			<br />
+
+			<a style="font-weight: bold;"  href="28.html">Data Manipulation Functions</a></b><br />
+			<br />
+
+			<a style="font-weight: bold;"  href="34.html">Table Functions</a></b><br />
+			<br />
+
+			<a style="font-weight: bold;"  href="42.html">Error Handling Functions</a></b><br />
+			<br />
+
+			<a style="font-weight: bold;"  href="52.html">SQL Syntax</a></b><br />
+			<br />
+
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" class="notices" align="center">
+			[ txtSQL Documentation powered by <a href="http://chibiguy.dotgeek.org" target="_blank">txtSQL</a> | 5 SQL Queries ]
+		</td>
+	</tr>
+</table>
+
+</body>
+</html>

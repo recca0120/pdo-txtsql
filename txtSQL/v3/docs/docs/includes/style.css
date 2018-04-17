@@ -1,0 +1,188 @@
+td, body, input
+{
+	font-family: Trebuchet MS;
+	font-size: 11px;
+	color: #000000;
+}
+
+body
+{
+	background-color: #C5C5C5;
+	margin: 0px;
+}
+
+a
+{
+	text-decoration: none;
+	color: #517EAC;
+	font-weight: bold;
+}
+
+a:hover
+{
+	color: #135192;
+}
+
+.header
+{
+	background-color: #135192;
+	padding-left: 25px;
+}
+
+.header a
+{
+	color: #FFFFFF;
+}
+
+.header a:hover
+{
+	text-decoration: underline;
+	color: #FFFFFF;
+}
+
+.mainTable
+{
+	border-left: 1px solid #999999;
+	border-right: 1px solid #999999;
+	height: 100%;
+}
+
+.mainCell
+{
+	background-color: #FFFFFF;
+	width: 550px;
+	padding: 15px;
+}
+
+.sideCell
+{
+	font-family: Trebuchet MS;
+	background-color: #F2F2F2;
+	border-left: 1px solid #D3D3D3;
+	width: 175px;
+	padding: 15px;
+}
+
+.sideCell a
+{
+	text-decoration: none;
+	font-weight: normal;
+}
+
+input, textarea
+{
+	background-color: #F5F5F5;
+	border: 1px solid #CCCCCC;
+}
+
+.search
+{
+	width: 100px;
+}
+
+.dashedUnderline
+{
+	width: 100%;
+	border-bottom: 1px dashed #D3D3D3;
+}
+
+.dashedOverline
+{
+	width: 100%;
+	border-top: 1px dashed #D3D3D3;
+}
+
+
+.dashedUnderOverline
+{
+	width: 100%;
+	border-top: 1px dashed #D3D3D3;
+	border-bottom: 1px dashed #D3D3D3;
+}
+
+.h1, .h4
+{
+	font-family: Trebuchet MS;
+	font-size: 14px;
+	margin: 0px;
+	padding: 0px;
+	font-weight: bold;
+}
+
+.h4
+{
+	font-size: 10px;
+}
+
+.content
+{
+	font-family: Trebuchet MS;
+	font-size: 12px;
+	line-height: 1.5em;
+	color: #333333;
+}
+
+.small
+{
+	font-size: 10px;
+}
+
+.row1
+{
+	background-color: #F2F2F2;
+}
+
+.row2
+{
+	background-color: #D3D3D3;
+}
+
+.commentTable
+{
+	width: 100%;
+}
+
+.commentTable td
+{
+	border: 1px solid #E0E0E0;
+	padding: 5px;
+}
+
+.commentInfo
+{
+	background-color: #E8E8E8;
+	padding: 5px;
+	border: 1px solid #E0E0E0;
+}
+
+.notices
+{
+	border-top: 1px solid #D3D3D3;
+	background-color: #F2F2F2;
+	font-size: 10px;
+	color: #A2A2A2;
+}
+
+img
+{
+	border: 0px solid;
+}
+
+.syntax
+{
+	background-color: #F9F9F9;
+	border: 1px solid #E0E0E0;
+	padding: 5px;
+}
+
+.examples
+{
+	border: 1px solid #E0E0E0;
+	background-color: #F9F9F9;
+}
+
+.code
+{
+	font-size: 10px;
+	color: #787878;
+}
