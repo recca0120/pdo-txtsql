@@ -38,7 +38,7 @@ class ConnectionTest extends TestCase
     public function test_database_not_exists()
     {
         try {
-            $pdo = new PDO(sprintf('txtsql:dbname=fake-test;path=%s', $this->path), 'root', 'root');
+            $pdo = new PDO(sprintf('txtsql:dbname=fake-test;path=%s', $this->path), 'root', '');
         } catch (PDOException $e) {
             $this->assertInstanceOf('PDOException', $e);
             $this->assertSame(sprintf("SQLSTATE[HY000] [1049] Unknown database '%s'", 'fake-test'), $e->getMessage());

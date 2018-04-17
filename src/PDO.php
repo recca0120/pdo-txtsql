@@ -76,37 +76,25 @@ class PDO extends \PDO
             $options[self::ATTR_ERRMODE] = self::ERRMODE_EXCEPTION;
         }
 
+        $this->fileFactory = new FileFactory;
+
+
         $this->dsn = $dsn;
         $this->username = $username;
         $this->password = $passwd;
         $this->options = $options;
+
         $parsedDsn = $this->parseDsn($this->dsn, ['dbname', 'path', 'file']);
         $this->dbname = $parsedDsn['dbname'];
         $this->path = isset($parsedDsn['path']) ? $parsedDsn['path'] : $parsedDsn['file'];
-
-        $this->fileFactory = new FileFactory;
         $this->fileFactory->setPath($this->path);
 
-        $this->checkDatabase()->connect($dsn, $username, $passwd, $options);
-    }
-
-    private function checkDatabase()
-    {
-        $dbFolder = $this->fileFactory->create($this->dbname);
-
-        if ($dbFolder->exists() === false) {
-            throw new PDOException(
-                sprintf("SQLSTATE[HY000] [1049] Unknown database '%s'", $this->dbname),
-                1049
-            );
-        }
-
-        return $this;
+        $this->connect()->selectDatabase();
     }
 
     private function connect()
     {
-        $userFile = $this->fileFactory->create('txtsql/txtsql.MYI');
+        $userFile = $this->fileFactory->get('txtsql/txtsql.MYI');
         $users = $userFile->getContent();
         $username = strtolower($this->username);
         if (empty($users[$username]) === true || $users[$username] !== md5($this->password)) {
@@ -116,7 +104,21 @@ class PDO extends \PDO
             );
         }
 
-        return true;
+        return $this;
+    }
+
+    private function selectDatabase()
+    {
+        $dbFolder = $this->fileFactory->get($this->dbname);
+
+        if ($dbFolder->exists() === false) {
+            throw new PDOException(
+                sprintf("SQLSTATE[HY000] [1049] Unknown database '%s'", $this->dbname),
+                1049
+            );
+        }
+
+        return $this;
     }
 
     private function parseDsn($dsn, $params)

@@ -13,7 +13,7 @@ class FileFactory
         return $this;
     }
 
-    public function create($file)
+    public function get($file)
     {
         return new File($this->path, $file);
     }
