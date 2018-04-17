@@ -3,12 +3,10 @@
 namespace Recca0120\Tests\TxtSQL\Old;
 
 use txtSQL;
+use Mockery as m;
 use PDOException;
 use Recca0120\TxtSQL\PDO;
-use Mockery as m;
 use PHPUnit\Framework\TestCase;
-
-use Exception;
 
 class ConnectionTest extends TestCase
 {
