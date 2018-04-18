@@ -51,6 +51,6 @@ class ConnectionTest extends TestCase
         $connection = new txtSQL($this->path);
         $this->assertTrue($connection->connect($this->username, $this->passwd));
 
-        $pdo = new PDO(sprintf('txtsql:dbname=%s;file=%s', $this->dbname, $this->path), $this->username, $this->passwd);
+        $pdo = new PDO(sprintf('txtsql:dbname=%s;path=%s', $this->dbname, $this->path), $this->username, $this->passwd);
     }
 }

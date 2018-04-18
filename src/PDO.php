@@ -3,7 +3,6 @@
 namespace Recca0120\TxtSQL;
 
 use PDOException;
-use Recca0120\TxtSQL\Utils\FileFactory;
 
 class PDO extends \PDO
 {
@@ -76,49 +75,22 @@ class PDO extends \PDO
             $options[self::ATTR_ERRMODE] = self::ERRMODE_EXCEPTION;
         }
 
-        $this->fileFactory = new FileFactory;
+        $parsedDsn = $this->parseDsn($dsn, ['dbname', 'path']);
+        $this->txtSQL = new TxtSQL($parsedDsn['path'], $username, $passwd);
 
-
-        $this->dsn = $dsn;
-        $this->username = $username;
-        $this->password = $passwd;
-        $this->options = $options;
-
-        $parsedDsn = $this->parseDsn($this->dsn, ['dbname', 'path', 'file']);
-        $this->dbname = $parsedDsn['dbname'];
-        $this->path = isset($parsedDsn['path']) ? $parsedDsn['path'] : $parsedDsn['file'];
-        $this->fileFactory->setPath($this->path);
-
-        $this->connect()->selectDatabase();
-    }
-
-    private function connect()
-    {
-        $userFile = $this->fileFactory->get('txtsql/txtsql.MYI');
-        $users = $userFile->getContent();
-        $username = strtolower($this->username);
-        if (empty($users[$username]) === true || $users[$username] !== md5($this->password)) {
+        if ($this->txtSQL->connect() === false) {
             throw new PDOException(
-                sprintf("SQLSTATE[HY000] [1045] Access denied for user '%s'@'%s' (using password: YES)", $this->username, $this->path),
+                sprintf("SQLSTATE[HY000] [1045] Access denied for user '%s'@'%s' (using password: YES)", $username, $parsedDsn['path']),
                 1045
             );
         }
 
-        return $this;
-    }
-
-    private function selectDatabase()
-    {
-        $dbFolder = $this->fileFactory->get($this->dbname);
-
-        if ($dbFolder->exists() === false) {
+        if ($this->txtSQL->selectDatabase($parsedDsn['dbname']) === false) {
             throw new PDOException(
-                sprintf("SQLSTATE[HY000] [1049] Unknown database '%s'", $this->dbname),
+                sprintf("SQLSTATE[HY000] [1049] Unknown database '%s'", $parsedDsn['dbname']),
                 1049
             );
         }
-
-        return $this;
     }
 
     private function parseDsn($dsn, $params)

@@ -1,8 +1,8 @@
 <?php
 
-namespace Recca0120\TxtSQL\Utils;
+namespace Recca0120\TxtSQL\Database;
 
-class File
+class Database
 {
     private $file;
 

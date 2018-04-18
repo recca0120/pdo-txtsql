@@ -5,7 +5,8 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": ">=5.5"
+        "php": ">=5.5",
+        "yajra/laravel-pdo-via-oci8": "^1.3"
     },
     "require-dev": {
         "mockery/mockery": "~0.9.4|~1.0",
@@ -14,6 +15,9 @@
         "aura/sql": "3.x-dev"
     },
     "autoload": {
+        "files": [
+            "src\\helpers.php"
+        ],
         "psr-4": {
             "Recca0120\\TxtSQL\\": "src/"
         }
